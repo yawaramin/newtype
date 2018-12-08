@@ -4,18 +4,18 @@ import scala.reflect.ClassTag
 
 /** @see [[newtype.Newtype.apply]] */
 sealed trait Newtype[A] extends Serializable {
-  type T
+  type Type
 
-  def apply(a: A): T
+  def apply(a: A): Type
 
   /** Extract the underlying value from the wrapped newtyped value. This
       could be done with an unapply method and a pattern match except
       for the Scala 2 bug, https://github.com/scala/bug/issues/9247 .
       Looks like that will be fixed in Dotty though. */
-  def value(t: T): A
+  def value(t: Type): A
 
   /** So that newtype values can be put in arrays. */
-  def classTag: ClassTag[T]
+  def classTag: ClassTag[Type]
 }
 
 /** @see [[newtype.Newtype.apply]] */
@@ -36,7 +36,7 @@ object Newtype {
 
       {{{
       val Id = Newtype[Long](0.<)
-      type Id = Id.T
+      type Id = Id.Type
       val bobId = Id(1) // : Id
       val bobIdLong = Id value bobId // : Long = 1
       }}}
@@ -49,13 +49,13 @@ object Newtype {
 
 private class Make[A](valid: A => Boolean)(implicit ev: ClassTag[A])
     extends Newtype[A] {
-  type T = A
+  type Type = A
 
-  def apply(a: A): T = {
+  def apply(a: A): Type = {
     require(valid(a))
     a
   }
 
-  def value(t: T): A = t
-  val classTag: ClassTag[T] = ev
+  def value(t: Type): A = t
+  val classTag: ClassTag[Type] = ev
 }
