@@ -38,7 +38,7 @@ object Newtype {
       val Id = Newtype[Long](0.<)
       type Id = Id.Type
       val bobId = Id(1) // : Id
-      val bobIdLong = Id value bobId // : Long = 1
+      val bobIdLong = Id.value(bobId) // : Long = 1
       }}}
 
       Notice how the definition reads 'new type of Long', that's an
