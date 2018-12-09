@@ -12,7 +12,7 @@ sealed trait Newtype[A] extends Serializable {
       could be done with an unapply method and a pattern match except
       for the Scala 2 bug, https://github.com/scala/bug/issues/9247 .
       Looks like that will be fixed in Dotty though. */
-  def value(t: Type): A
+  def value(typ: Type): A
 
   /** So that newtype values can be put in arrays. */
   def classTag: ClassTag[Type]

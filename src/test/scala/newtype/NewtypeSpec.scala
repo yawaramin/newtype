@@ -8,6 +8,8 @@ class NewtypeSpec extends RefSpec {
   def `preserves value` = assertResult(One)(Id.value(Id(One)))
   def `wrapper has identical memory layout to input value` =
     assertResult(bytes(One))(bytes(Id(One)))
+  def `wrapper is type-incompatible with input value` =
+    assertTypeError("Id(One).capitalize")
   def `errors if invariants violated` =
     assertThrows[IllegalArgumentException](Id(Zero))
 }
