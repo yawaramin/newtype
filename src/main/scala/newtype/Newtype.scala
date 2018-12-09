@@ -56,6 +56,6 @@ private class Make[A](valid: A => Boolean)(implicit ev: ClassTag[A])
     a
   }
 
-  def value(t: Type): A = t
+  def value(typ: Type): A = typ
   val classTag: ClassTag[Type] = ev
 }

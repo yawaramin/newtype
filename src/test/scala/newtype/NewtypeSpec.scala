@@ -3,7 +3,7 @@ package newtype
 import org.scalatest.refspec.RefSpec
 
 class NewtypeSpec extends RefSpec {
-  import NewtypeTest._
+  import NewtypeSpec._
 
   def `preserves value` = assertResult(One)(Id.value(Id(One)))
   def `wrapper has identical memory layout to input value` =
@@ -12,7 +12,7 @@ class NewtypeSpec extends RefSpec {
     assertThrows[IllegalArgumentException](Id(Zero))
 }
 
-object NewtypeTest {
+object NewtypeSpec {
   val Zero = "0"
   val One = "1"
   val Id = Newtype[String](Zero.!=)
