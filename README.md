@@ -34,7 +34,17 @@ object TypesTest {
 }
 ```
 
-## Test
+## Develop
 
-    ./gradlew --build-cache -t test
+* Add `-t` to enable watch mode
+* Add `--build-cache` to reuse outputs from previous builds (recommended
+  with `-t`)
+
+Build:
+
+    ./gradlew build
+
+Test:
+
+    ./gradlew test
 
