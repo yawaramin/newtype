@@ -5,19 +5,29 @@ plugins {
 	id "scala"
 }
 
+ext {
+  scalaVersion = '2.12.7'
+  scalaDepVersion = '2.12'
+}
+
 // This setting is from the 'application' plugin
 mainClassName = "Test"
 
 compileScala.dependsOn scalafmtAll
 
 dependencies {
-  implementation 'org.scala-lang:scala-library:2.12.7'
-  testCompile 'org.scalatest:scalatest_2.12:3.0.5'
+  implementation "org.scala-lang:scala-library:$scalaVersion"
+  testCompile scala('org.scalatest', 'scalatest', '3.0.5')
   testRuntime 'org.pegdown:pegdown:1.4.2'
 }
 
 repositories {
   jcenter()
   mavenCentral()
+}
+
+def scala(group, module, version) {
+  def moduleScalaVersion = module + '_' + scalaDepVersion
+  return "$group:$moduleScalaVersion:$version"
 }
 
