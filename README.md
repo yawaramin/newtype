@@ -13,7 +13,7 @@ Define a new wrapper:
 import newtype.Newtype
 
 object Types {
-  val Id = Newtype[Long](0.<)
+  val Id: Newtype[Long] = Newtype(0.<)
   type Id = Id.Type
 }
 ```
@@ -40,9 +40,9 @@ object TypesTest {
 * Add `--build-cache` to reuse outputs from previous builds (recommended
   with `-t`)
 
-Build:
+Compile:
 
-    ./gradlew build
+    ./gradlew compileScala
 
 Test:
 

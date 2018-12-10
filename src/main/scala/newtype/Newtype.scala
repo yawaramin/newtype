@@ -29,8 +29,7 @@ object Newtype {
       @param valid a rule that all wrapped values must obey. Useful for
         enforcing invariants like for refinement types, but with runtime
         checking. If omitted, is a rule that always passes.
-      @param classTagA implicit evidence that the base type has a class
-        tag.
+      @param A implicit evidence that the base type has a class tag.
 
       Usage:
 
