@@ -14,7 +14,8 @@ sealed trait Newtype[A] extends Serializable {
       Looks like that will be fixed in Dotty though. */
   def value(typ: Type): A
 
-  /** So that newtype values can be put in arrays. */
+  /** This can be exposed as an implicit to let newtype-wrapped values
+      be put in arrays. */
   def classTag: ClassTag[Type]
 }
 
@@ -46,7 +47,7 @@ object Newtype {
     new Make(valid)
 }
 
-private class Make[A](valid: A => Boolean)(implicit ev: ClassTag[A])
+private class Make[A](valid: A => Boolean)(implicit A: ClassTag[A])
     extends Newtype[A] {
   type Type = A
 
@@ -56,5 +57,5 @@ private class Make[A](valid: A => Boolean)(implicit ev: ClassTag[A])
   }
 
   def value(typ: Type): A = typ
-  val classTag: ClassTag[Type] = ev
+  val classTag: ClassTag[Type] = A
 }

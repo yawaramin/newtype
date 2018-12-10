@@ -26,8 +26,9 @@ of the type:
 object TypesTest {
   import Types._
 
-  /* The constraint will prevent creating illegal values:
-  val invalidId = Id(0) */
+  /* The constraint will prevent creating invalid values by throwing a
+     runtime exception: */
+  //val invalidId = Id(0)
 
   val bobId: Id = Id(1)
   val 1L = Id.value(bobId)
