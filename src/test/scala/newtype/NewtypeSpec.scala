@@ -11,6 +11,8 @@ class NewtypeSpec extends RefSpec {
     assertResult(bytes(Array(One)))(bytes(Array(idOne)))
   def `errors if invariants violated` =
     assertThrows[IllegalArgumentException](Id(Zero))
+  def `value gets input value from wrapped value` =
+    assertResult(One)(Id.value(idOne))
   def `wrapper has identical memory layout to input value` =
     assertResult(bytes(One))(bytes(idOne))
   def `wrapper is type-incompatible with input value` =
