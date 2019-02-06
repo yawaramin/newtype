@@ -21,6 +21,7 @@ sealed trait Newtype[A] extends Serializable {
 
 /** @see [[newtype.Newtype.apply]] */
 object Newtype {
+  var X = 1
 
   /** Returns a new opaque value type that wraps a given base type, and
       conversions between the base and wrapper types. The wrapper doesn't
